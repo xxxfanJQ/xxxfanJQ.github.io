@@ -146,6 +146,87 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/14/hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="FJQ">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xxxFJQ's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/14/hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">hexo+github搭建博客</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-06-14 12:48:31 / 修改时间：16:02:24" itemprop="dateCreated datePublished" datetime="2021-06-14T12:48:31+08:00">2021-06-14</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h1><p>hexo是以静态文件的形式管理blog，直接将文章编译成静态网页文件并发布，所以这样文章的内容、标题、标签等信息就没必要存数据库里面了，是直接纯静态页面了，这就解决了数据库的问题。<br>而 GitHub ，它提供了 GitHub Pages 帮助我们来架设一个静态网站，这就解决了服务器的问题。<br>GitHub Pages 允许每个账户创建一个名为 {username}.<a target="_blank" rel="noopener" href="http://github.io/">http://github.io</a> 的仓库，另外它还会自动为这个仓库分配一个 <a target="_blank" rel="noopener" href="http://github.io/">http://github.io</a> 的二级域名，这就解决了域名的问题。</p>
+<h1 id="二、搭建前准备"><a href="#二、搭建前准备" class="headerlink" title="二、搭建前准备"></a>二、搭建前准备</h1><p>1、Node.JS<br><a target="_blank" rel="noopener" href="https://nodejs.org/en/">https://nodejs.org/en/</a><br>直接下载，用以使用npm命令</p>
+<p>2、Git</p>
+<h1 id="三、搭建过程"><a href="#三、搭建过程" class="headerlink" title="三、搭建过程"></a>三、搭建过程</h1><p>1、安装Hexo<br>hexo是一个博客框架，首先安装Hexo的命令行工具，以使用hexo命令</p>
+<p>npm install -g hexo-cli</p>
+<p>2、初始化项目</p>
+<p>使用hexo初始化一个文件夹，该文件夹作为blog源码</p>
+<p>hexo init {directory}</p>
+<p>接下来我们首先进入新生成的文件夹里面，然后调用 Hexo 的 generate 命令，将 Hexo 编译生成 HTML 代码，命令如下：</p>
+<p>hexo generate</p>
+<p>然后我们利用 Hexo 提供的 serve 命令把博客在本地运行起来，命令如下：</p>
+<p>hexo serve</p>
+<p>3、部署</p>
+<p>那么怎么把这个页面部署到 GitHub Pages 上面呢，其实 Hexo 已经给我们提供一个命令，利用它我们可以直接将博客一键部署，不需要手动去配置服务器或进行其他的各项配置。</p>
+<p>部署命令如下：</p>
+<p>hexo deploy</p>
+<p>在部署之前，我们需要先知道博客的部署地址，它需要对应 GitHub 的一个 Repository 的地址，这个信息需要我们来配置一下。打开根目录下的 _config.yml 文件，找到 Deployment 这个地方，把刚才新建的 Repository 的地址贴过来，然后指定分支为 master 分支，最终修改为如下内容：</p>
+<h1 id="Deployment"><a href="#Deployment" class="headerlink" title="Deployment"></a>Deployment</h1><h2 id="Docs-https-hexo-io-docs-one-command-deployment"><a href="#Docs-https-hexo-io-docs-one-command-deployment" class="headerlink" title="Docs: https://hexo.io/docs/one-command-deployment"></a>Docs: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment">https://hexo.io/docs/one-command-deployment</a></h2><p>deploy:<br>  type: git<br>  repo: <a href="mailto:&#x67;&#x69;&#x74;&#64;&#x67;&#105;&#x74;&#x68;&#117;&#98;&#x2e;&#x63;&#111;&#109;">&#x67;&#x69;&#x74;&#64;&#x67;&#105;&#x74;&#x68;&#117;&#98;&#x2e;&#x63;&#111;&#109;</a>:xxxfanJQ/xxxfanJQ.github.io.git<br>  branch: master</p>
+<p>另外我们还需要额外安装一个支持 Git 的部署插件，名字叫做 hexo-deployer-git，有了它我们才可以顺利将其部署到 GitHub 上面，如果不安装的话，在执行部署命令时会报如下错误：</p>
+<p>Deployer not found: git</p>
+<p>好，那就让我们安装下这个插件，在项目目录下执行安装命令如下：</p>
+<p>npm install hexo-deployer-git –save</p>
+<p>安装成功后，执行：<br>hexo deploy</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/13/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -278,7 +359,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
